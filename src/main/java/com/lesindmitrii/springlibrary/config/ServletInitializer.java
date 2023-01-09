@@ -27,7 +27,7 @@ public class ServletInitializer extends AbstractAnnotationConfigDispatcherServle
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
-    
+
     @Override
     public void onStartup(@NonNull ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
