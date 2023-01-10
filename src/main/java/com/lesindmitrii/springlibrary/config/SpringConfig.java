@@ -1,12 +1,16 @@
 package com.lesindmitrii.springlibrary.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.Ordered;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -15,9 +19,13 @@ import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
+import javax.sql.DataSource;
+import java.util.LinkedList;
+
 @Configuration
 @ComponentScan("com.lesindmitrii.springlibrary")
 @EnableWebMvc
+@PropertySource("classpath:application.properties")
 public class SpringConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
@@ -47,7 +55,6 @@ public class SpringConfig implements WebMvcConfigurer {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         templateEngine.setEnableSpringELCompiler(true);
-
         return templateEngine;
     }
 
@@ -58,4 +65,20 @@ public class SpringConfig implements WebMvcConfigurer {
         registry.viewResolver(resolver);
         resolver.setCharacterEncoding("UTF-8");
     }
+
+    @Bean
+    public DataSource getDataSource(@Value("${database.driver}") String databaseDriver, @Value("${database.url}") String databaseUrl, @Value("${database.login}") String databaseLogin, @Value("${database.password}") String databasePassword) {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(databaseDriver);
+        dataSource.setUrl(databaseUrl);
+        dataSource.setUsername(databaseLogin);
+        dataSource.setPassword(databasePassword);
+        return dataSource;
+    }
+
+    @Bean
+    public JdbcTemplate getJdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
 }
