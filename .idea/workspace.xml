@@ -10,21 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="083969de-fcd1-436b-96f3-6114a4a40c90" name="Changes" comment="Add people support">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/create_tables.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/PeopleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/PeopleDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/entity/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/entity/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/mappers/PeopleMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/config/SpringConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/config/SpringConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/PeopleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/PeopleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/PeopleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/PeopleDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,8 +171,16 @@
       <option name="presentableId" value="Default" />
       <updated>1673271979424</updated>
       <workItem from="1673271980831" duration="4130000" />
-      <workItem from="1673341159885" duration="9495000" />
+      <workItem from="1673341159885" duration="13172000" />
     </task>
+    <task id="LOCAL-00001" summary="Add people support">
+      <created>1673362068447</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1673362068447</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,7 +208,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/PeopleDao.java</url>
-          <line>28</line>
+          <line>27</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>

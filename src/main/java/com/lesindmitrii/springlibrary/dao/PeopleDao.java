@@ -7,14 +7,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
-import javax.sql.RowSet;
 import java.util.List;
 
 @Service
 public class PeopleDao {
     private final JdbcTemplate jdbcTemplate;
     private final PeopleMapper peopleMapper;
-
+    
     @Autowired
     public PeopleDao(JdbcTemplate jdbcTemplate, PeopleMapper peopleMapper) {
         this.jdbcTemplate = jdbcTemplate;
@@ -31,4 +30,15 @@ public class PeopleDao {
         person.setId(rowSet.getInt("person_id"));
     }
 
+    public Person getById(int id) {
+        return jdbcTemplate.queryForObject("select * from person where person_id = ?", peopleMapper, id);
+    }
+
+    public void deleteById(int id) {
+        jdbcTemplate.update("delete from person where person_id = ?", id);
+    }
+
+    public void update(int id, Person person) {
+        jdbcTemplate.update("update person set full_name = ?, year_of_birth = ? where person_id = ?", person.getFullName(), person.getYearOfBirth(), id);
+    }
 }

@@ -7,11 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -43,5 +39,29 @@ public class PeopleController {
         }
         peopleDao.create(person);
         return "redirect:/people";
+    }
+
+    @GetMapping("/{id}")
+    public String viewPerson(Model model, @PathVariable int id) {
+        model.addAttribute("person", peopleDao.getById(id));
+        return "people/view";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editPerson(Model model, @PathVariable int id) {
+        model.addAttribute("person", peopleDao.getById(id));
+        return "people/edit";
+    }
+
+    @DeleteMapping("/{id}")
+    public String editPerson(@PathVariable int id) {
+        peopleDao.deleteById(id);
+        return "redirect:/people";
+    }
+
+    @PatchMapping("/{id}")
+    public String editPerson(@ModelAttribute("person") Person person, @PathVariable int id) {
+        peopleDao.update(id, person);
+        return "redirect:/people/" + person.getId();
     }
 }
