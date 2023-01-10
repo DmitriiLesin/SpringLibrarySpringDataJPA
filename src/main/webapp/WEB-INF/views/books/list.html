@@ -5,12 +5,14 @@
     <title>List of books</title>
 </head>
 <body>
-<div th:each="person : ${people}">
-    <a th:href="@{/people/{id}(id = ${person.getId()})}"
-       th:text="${person.getFullName() + ', '  + person.getYearOfBirth()} "></a>
+
+<div th:each="book : ${books}">
+    <a th:href="@{/books/{id}(id = ${book.getId()})}"
+       th:text="${book.getName() + ', '  + book.getAuthor() + ', ' + book.getYearOfIssue()} "></a>
+    <br>
 </div>
-<br/>
-<form th:method="GET" th:action="@{/people/new}">
+<br>
+<form th:method="GET" th:action="@{/books/new}">
     <input type="submit" value="New"/>
 </form>
 <br/>

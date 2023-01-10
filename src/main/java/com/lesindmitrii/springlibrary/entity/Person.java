@@ -5,21 +5,21 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public class Person {
-    private int id;
+    private Integer id;
 
     @NotEmpty(message = "Full name should be not empty")
     @Size(max = 256, message = "Full name length should less than 256 characters")
     private String fullName;
 
     @Min(value = 1, message = "Year of birth should be not empty")
-    private int yearOfBirth;
+    private Integer yearOfBirth;
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -31,11 +31,11 @@ public class Person {
         this.fullName = fullName;
     }
 
-    public int getYearOfBirth() {
+    public Integer getYearOfBirth() {
         return yearOfBirth;
     }
 
-    public void setYearOfBirth(int yearOfBirth) {
+    public void setYearOfBirth(Integer yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }
 }

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public class Book {
-    private int id;
+    private Integer id;
 
     @NotEmpty(message = "Name should be not empty")
     @Size(max = 256, message = "Name length should less than 256 characters")
@@ -16,13 +16,16 @@ public class Book {
     private String author;
 
     @Min(value = 1, message = "Year of issue should be not empty")
-    private int yearOfIssue;
+    private Integer yearOfIssue;
 
-    public int getId() {
+    private Integer personId;
+
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,13 +45,19 @@ public class Book {
         this.author = author;
     }
 
-    public int getYearOfIssue() {
+    public Integer getYearOfIssue() {
         return yearOfIssue;
     }
 
-    public void setYearOfIssue(int yearOfIssue) {
+    public void setYearOfIssue(Integer yearOfIssue) {
         this.yearOfIssue = yearOfIssue;
     }
 
+    public Integer getPersonId() {
+        return personId;
+    }
 
+    public void setPersonId(Integer personId) {
+        this.personId = personId;
+    }
 }

@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
@@ -42,26 +41,27 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}")
-    public String viewPerson(Model model, @PathVariable int id) {
+    public String viewPerson(Model model, @PathVariable Integer id) {
         model.addAttribute("person", peopleDao.getById(id));
         return "people/view";
     }
 
     @GetMapping("/{id}/edit")
-    public String editPerson(Model model, @PathVariable int id) {
+    public String editPerson(Model model, @PathVariable Integer id) {
         model.addAttribute("person", peopleDao.getById(id));
         return "people/edit";
     }
 
+    @PatchMapping("/{id}")
+    public String patchPerson(@ModelAttribute("person") Person person, @PathVariable Integer id) {
+        peopleDao.update(id, person);
+        return "redirect:/people/" + person.getId();
+    }
+
     @DeleteMapping("/{id}")
-    public String editPerson(@PathVariable int id) {
+    public String deletePerson(@PathVariable Integer id) {
         peopleDao.deleteById(id);
         return "redirect:/people";
     }
 
-    @PatchMapping("/{id}")
-    public String editPerson(@ModelAttribute("person") Person person, @PathVariable int id) {
-        peopleDao.update(id, person);
-        return "redirect:/people/" + person.getId();
-    }
 }
