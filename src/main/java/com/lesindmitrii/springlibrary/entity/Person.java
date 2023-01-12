@@ -4,6 +4,10 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
+import java.awt.print.Book;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Person {
     private Integer id;
 
@@ -13,7 +17,6 @@ public class Person {
 
     @Min(value = 1, message = "Year of birth should be not empty")
     private Integer yearOfBirth;
-
 
     public Integer getId() {
         return id;

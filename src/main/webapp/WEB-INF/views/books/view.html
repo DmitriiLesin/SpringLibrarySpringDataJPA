@@ -6,11 +6,30 @@
 </head>
 
 <body>
-<p th:text="${'Name: ' + book.getName()}"></p>
+
+<p th:text="${'Title: ' + book.getTitle()}"></p>
 <p th:text="${'Author: ' + book.getAuthor()}"></p>
 <p th:text="${'Year of issue: '+ book.getYearOfIssue()}"></p>
-<br>
 
+<form th:unless="${owner}" th:method="POST" th:action="@{/books/{id}/assign(id=${book.getId()})}">
+    <br>
+    <label for="person">Choose a person:</label>
+    <select th:object="${person}" th:field="*{id}" id="person">
+        <option th:each="person : ${people}" th:value="${person.getId()}"
+                th:text="${person.getFullName()}"></option>
+    </select>
+
+    <input type="submit" value="Take"/>
+</form>
+
+<div th:if="${owner}">
+    <a th:text="${'Book taken by: ' + owner.getFullName()}"></a>
+    <br><br>
+    <form th:method="POST" th:action="@{/books/{id}/release(id=${book.getId()})}">
+        <input type="submit" value="Release"/>
+    </form>
+</div>
+<br>
 <form th:method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}">
     <input type="submit" value="Edit"/>
 </form>

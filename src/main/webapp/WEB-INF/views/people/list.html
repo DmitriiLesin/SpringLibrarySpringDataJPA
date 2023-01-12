@@ -5,6 +5,7 @@
     <title>List of books</title>
 </head>
 <body>
+<h2>People</h2>
 <div th:each="person : ${people}">
     <a th:href="@{/people/{id}(id = ${person.getId()})}"
        th:text="${person.getFullName() + ', '  + person.getYearOfBirth()} "></a>

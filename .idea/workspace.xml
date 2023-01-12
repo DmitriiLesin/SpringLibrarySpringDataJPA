@@ -10,22 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="083969de-fcd1-436b-96f3-6114a4a40c90" name="Changes" comment="Add books support, refactoring">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/BookController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/BookDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/mappers/BookMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/new.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/create_tables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/config/ServletInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/config/ServletInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/config/SpringConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/config/SpringConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/PeopleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/PeopleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/BookDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/BooksDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/PeopleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/PeopleDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/entity/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/entity/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/entity/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/mappers/BookMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/mappers/BookMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/edit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/view.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +46,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LogFilters">
@@ -70,6 +80,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/mrkon/IdeaProjects/SpringLibrary/src/main/webapp/WEB-INF/views/books",
+    "nodejs_package_manager_path": "npm",
     "spring.configuration.checksum": "7b2d67f0bc4d015da491d16b50c4ba62"
   },
   "keyToStringList": {
@@ -185,6 +196,11 @@
       <updated>1673271979424</updated>
       <workItem from="1673271980831" duration="4130000" />
       <workItem from="1673341159885" duration="17967000" />
+      <workItem from="1673380122689" duration="714000" />
+      <workItem from="1673423221611" duration="594000" />
+      <workItem from="1673449760382" duration="3800000" />
+      <workItem from="1673532754473" duration="594000" />
+      <workItem from="1673534332434" duration="11423000" />
     </task>
     <task id="LOCAL-00001" summary="Add people support">
       <created>1673362068447</created>
@@ -200,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673375084883</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add books support, refactoring">
+      <created>1673380191909</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1673380191910</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,16 +246,5 @@
     <MESSAGE value="Add people support" />
     <MESSAGE value="Add books support, refactoring" />
     <option name="LAST_COMMIT_MESSAGE" value="Add books support, refactoring" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/PeopleDao.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

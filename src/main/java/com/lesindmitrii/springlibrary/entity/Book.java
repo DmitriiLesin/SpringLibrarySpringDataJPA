@@ -9,7 +9,7 @@ public class Book {
 
     @NotEmpty(message = "Name should be not empty")
     @Size(max = 256, message = "Name length should less than 256 characters")
-    private String name;
+    private String title;
 
     @NotEmpty(message = "Author should be not empty")
     @Size(max = 256, message = "Author length should less than 256 characters")
@@ -20,7 +20,6 @@ public class Book {
 
     private Integer personId;
 
-
     public Integer getId() {
         return id;
     }
@@ -29,12 +28,12 @@ public class Book {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAuthor() {
