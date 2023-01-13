@@ -3,6 +3,7 @@ package com.lesindmitrii.springlibrary.controller;
 import com.lesindmitrii.springlibrary.dao.BooksDao;
 import com.lesindmitrii.springlibrary.dao.PeopleDao;
 import com.lesindmitrii.springlibrary.entity.Person;
+import com.lesindmitrii.springlibrary.util.PersonValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,10 +18,13 @@ public class PeopleController {
     private final PeopleDao peopleDao;
     private final BooksDao booksDao;
 
+    private final PersonValidator personValidator;
+
     @Autowired
-    public PeopleController(PeopleDao peopleDao, BooksDao booksDao) {
+    public PeopleController(PeopleDao peopleDao, BooksDao booksDao, PersonValidator personValidator) {
         this.peopleDao = peopleDao;
         this.booksDao = booksDao;
+        this.personValidator = personValidator;
     }
 
     @GetMapping
@@ -36,6 +40,7 @@ public class PeopleController {
 
     @PostMapping()
     public String createPerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
+        personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors()) {
             return "people/new";
         }
@@ -57,7 +62,11 @@ public class PeopleController {
     }
 
     @PatchMapping("/{id}")
-    public String patchPerson(@ModelAttribute("person") Person person, @PathVariable Integer id) {
+    public String patchPerson(@PathVariable Integer id, @ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
+        personValidator.validate(person, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "people/edit";
+        }
         peopleDao.update(id, person);
         return "redirect:/people/" + person.getId();
     }

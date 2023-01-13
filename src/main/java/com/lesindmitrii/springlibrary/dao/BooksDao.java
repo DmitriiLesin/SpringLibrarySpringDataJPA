@@ -56,7 +56,7 @@ public class BooksDao {
     }
 
     public void assign(Integer bookId, Integer personId) {
-        jdbcTemplate.update("update book set person_id = ? where book_id = ?", bookId, personId);
+        jdbcTemplate.update("update book set person_id = ? where book_id = ?", personId, bookId);
     }
 
     public void release(Integer bookId) {

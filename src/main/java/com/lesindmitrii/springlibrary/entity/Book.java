@@ -2,6 +2,7 @@ package com.lesindmitrii.springlibrary.entity;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class Book {
@@ -15,7 +16,9 @@ public class Book {
     @Size(max = 256, message = "Author length should less than 256 characters")
     private String author;
 
-    @Min(value = 1, message = "Year of issue should be not empty")
+
+    @NotNull(message = "Year of issue should be not empty")
+    @Min(value = 1900, message = "Year of issue should be greater 1900")
     private Integer yearOfIssue;
 
     private Integer personId;

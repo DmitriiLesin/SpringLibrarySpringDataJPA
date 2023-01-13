@@ -8,7 +8,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PeopleDao {
@@ -41,5 +40,10 @@ public class PeopleDao {
 
     public void update(int id, Person person) {
         jdbcTemplate.update("update person set full_name = ?, year_of_birth = ? where person_id = ?", person.getFullName(), person.getYearOfBirth(), id);
+    }
+
+    public boolean fullNameExist(String fullName) {
+        SqlRowSet result = jdbcTemplate.queryForRowSet("select true from person where full_name = ?", fullName);
+        return result.next();
     }
 }

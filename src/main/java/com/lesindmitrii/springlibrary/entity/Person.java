@@ -2,11 +2,8 @@ package com.lesindmitrii.springlibrary.entity;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
-import java.awt.print.Book;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Person {
     private Integer id;
@@ -15,7 +12,8 @@ public class Person {
     @Size(max = 256, message = "Full name length should less than 256 characters")
     private String fullName;
 
-    @Min(value = 1, message = "Year of birth should be not empty")
+    @NotNull(message = "Year of birth should be not empty")
+    @Min(value = 1900, message = "Year of birth should be greater 1900")
     private Integer yearOfBirth;
 
     public Integer getId() {

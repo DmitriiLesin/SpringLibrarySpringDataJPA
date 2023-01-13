@@ -48,7 +48,6 @@ public class BookController {
 
     @GetMapping("/{id}")
     public String viewBook(Model model, @PathVariable Integer id, @ModelAttribute("person") Person person) {
-        Book book = booksDao.getById(id);
 
         Optional<Person> owner = booksDao.getBookOwner(id);
         if (owner.isPresent()) {
@@ -83,7 +82,10 @@ public class BookController {
     }
 
     @PatchMapping("/{id}")
-    public String patchBook(@ModelAttribute("book") Book book, @PathVariable Integer id) {
+    public String patchBook(@PathVariable Integer id, @ModelAttribute("book") @Valid Book book, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "books/edit";
+        }
         booksDao.update(id, book);
         return "redirect:/books/" + book.getId();
     }
