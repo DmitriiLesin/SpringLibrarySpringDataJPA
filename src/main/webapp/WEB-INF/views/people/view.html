@@ -10,16 +10,16 @@
 <p th:text="${'Full name: ' + person.getFullName()}"></p>
 <p th:text="${'Year of birth: '+ person.getYearOfBirth()}"></p>
 
-<div th:if="${!books.isEmpty()}">
+<div th:if="${!person.getBooks().isEmpty()}">
     <hr/>
     <b>Taken books:</b>
     <br/>
-    <table th:each="book : ${books}">
+    <table th:each="book : ${person.getBooks()}">
         <tr th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYearOfIssue()}">book</tr>
     </table>
     <hr/>
 </div>
-<a th:if="${books.isEmpty()}">The user has not taken the books yet</a>
+<a th:if="${person.getBooks().isEmpty()}">The user has not taken the books yet</a>
 <br>
 <br>
 <form th:method="GET" th:action="@{/people/{id}/edit(id=${person.getId()})}">

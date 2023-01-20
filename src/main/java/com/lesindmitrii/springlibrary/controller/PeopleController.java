@@ -1,6 +1,5 @@
 package com.lesindmitrii.springlibrary.controller;
 
-import com.lesindmitrii.springlibrary.dao.BooksDao;
 import com.lesindmitrii.springlibrary.dao.PeopleDao;
 import com.lesindmitrii.springlibrary.entity.Person;
 import com.lesindmitrii.springlibrary.util.PersonValidator;
@@ -16,14 +15,12 @@ import org.springframework.web.bind.annotation.*;
 public class PeopleController {
 
     private final PeopleDao peopleDao;
-    private final BooksDao booksDao;
 
     private final PersonValidator personValidator;
 
     @Autowired
-    public PeopleController(PeopleDao peopleDao, BooksDao booksDao, PersonValidator personValidator) {
+    public PeopleController(PeopleDao peopleDao, PersonValidator personValidator) {
         this.peopleDao = peopleDao;
-        this.booksDao = booksDao;
         this.personValidator = personValidator;
     }
 
@@ -50,8 +47,7 @@ public class PeopleController {
 
     @GetMapping("/{id}")
     public String viewPerson(Model model, @PathVariable Integer id) {
-        model.addAttribute("person", peopleDao.getById(id));
-        model.addAttribute("books", booksDao.getPersonBooks(id));
+        model.addAttribute("person", peopleDao.getByIdWithBooks(id));
         return "people/view";
     }
 

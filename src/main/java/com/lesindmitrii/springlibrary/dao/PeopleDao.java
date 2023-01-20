@@ -1,49 +1,72 @@
 package com.lesindmitrii.springlibrary.dao;
 
 import com.lesindmitrii.springlibrary.entity.Person;
-import com.lesindmitrii.springlibrary.mappers.PeopleMapper;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class PeopleDao {
-    private final JdbcTemplate jdbcTemplate;
-    private final PeopleMapper peopleMapper;
-    
+
+    private final SessionFactory sessionFactory;
+
     @Autowired
-    public PeopleDao(JdbcTemplate jdbcTemplate, PeopleMapper peopleMapper) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.peopleMapper = peopleMapper;
+    public PeopleDao(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
+    @Transactional(readOnly = true)
     public List<Person> getAll() {
-        return jdbcTemplate.query("select * from person", peopleMapper);
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery(" select p from Person p", Person.class).getResultList();
     }
 
+    @Transactional()
     public void create(Person person) {
-        SqlRowSet rowSet = jdbcTemplate.queryForRowSet("insert into person (full_name, year_of_birth) values (?, ?) returning person_id", person.getFullName(), person.getYearOfBirth());
-        rowSet.next();
-        person.setId(rowSet.getInt("person_id"));
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(person);
     }
 
+    @Transactional(readOnly = true)
     public Person getById(int id) {
-        return jdbcTemplate.queryForObject("select * from person where person_id = ?", peopleMapper, id);
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(Person.class, id);
     }
 
+    @Transactional(readOnly = true)
+    public Person getByIdWithBooks(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Person> query = session.createQuery("select p from Person p where p.id =:id", Person.class);
+        query.setParameter("id", id);
+        query.setHint("javax.persistence.fetchgraph", session.getEntityGraph("loadBooks"));
+        return query.getSingleResult();
+    }
+
+    @Transactional()
     public void deleteById(int id) {
-        jdbcTemplate.update("delete from person where person_id = ?", id);
+        Session session = sessionFactory.getCurrentSession();
+        Person person = session.getReference(Person.class, id);
+        session.remove(person);
     }
 
+    @Transactional()
     public void update(int id, Person person) {
-        jdbcTemplate.update("update person set full_name = ?, year_of_birth = ? where person_id = ?", person.getFullName(), person.getYearOfBirth(), id);
+        Session session = sessionFactory.getCurrentSession();
+        Person updatePerson = session.get(Person.class, id);
+        updatePerson.setFullName(person.getFullName());
+        updatePerson.setYearOfBirth(person.getYearOfBirth());
     }
 
+    @Transactional(readOnly = true)
     public boolean fullNameExist(String fullName) {
-        SqlRowSet result = jdbcTemplate.queryForRowSet("select true from person where full_name = ?", fullName);
-        return result.next();
+        Session session = sessionFactory.getCurrentSession();
+        Query<Person> query = session.createQuery("select p from Person p where p.fullName =:fullName", Person.class);
+        query.setParameter("fullName", fullName);
+        return query.getSingleResultOrNull() != null;
     }
 }

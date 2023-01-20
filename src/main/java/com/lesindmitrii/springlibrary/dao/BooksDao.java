@@ -2,64 +2,80 @@ package com.lesindmitrii.springlibrary.dao;
 
 import com.lesindmitrii.springlibrary.entity.Book;
 import com.lesindmitrii.springlibrary.entity.Person;
-import com.lesindmitrii.springlibrary.mappers.BookMapper;
-import com.lesindmitrii.springlibrary.mappers.PeopleMapper;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class BooksDao {
-    private final JdbcTemplate jdbcTemplate;
-    private final BookMapper bookMapper;
-    private final PeopleMapper peopleMapper;
+
+    private final SessionFactory sessionFactory;
 
     @Autowired
-    public BooksDao(JdbcTemplate jdbcTemplate, BookMapper bookMapper, PeopleMapper peopleMapper) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.bookMapper = bookMapper;
-        this.peopleMapper = peopleMapper;
+    public BooksDao(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
+    @Transactional(readOnly = true)
     public List<Book> getAll() {
-        return jdbcTemplate.query("select * from book", bookMapper);
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery(" select b from Book b", Book.class).getResultList();
     }
 
+    @Transactional()
     public void create(Book book) {
-        SqlRowSet rowSet = jdbcTemplate.queryForRowSet("insert into book (title, author, year_of_issue) values (?, ?, ?) returning book_id", book.getTitle(), book.getAuthor(), book.getYearOfIssue());
-        rowSet.next();
-        book.setId(rowSet.getInt("book_id"));
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(book);
     }
 
+    @Transactional(readOnly = true)
     public Book getById(int id) {
-        return jdbcTemplate.queryForObject("select * from book where book_id = ?", bookMapper, id);
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(Book.class, id);
     }
 
+    @Transactional(readOnly = true)
+    public Optional<Person> getBookOwner(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Person> query = session.createQuery("select b.person  from Book b where b.id =:id", Person.class);
+        query.setParameter("id", id);
+        return query.uniqueResultOptional();
+    }
+
+    @Transactional()
     public void deleteById(int id) {
-        jdbcTemplate.update("delete from book where book_id = ?", id);
+        Session session = sessionFactory.getCurrentSession();
+        Book book = session.getReference(Book.class, id);
+        session.remove(book);
     }
 
+    @Transactional()
     public void update(int id, Book book) {
-        jdbcTemplate.update("update book set title = ?, author = ?, year_of_issue = ? where book_id = ?", book.getTitle(), book.getAuthor(), book.getYearOfIssue(), id);
+        Session session = sessionFactory.getCurrentSession();
+        Book updateBook = session.get(Book.class, id);
+        updateBook.setTitle(book.getTitle());
+        updateBook.setAuthor(book.getAuthor());
+        updateBook.setYearOfIssue(book.getYearOfIssue());
     }
 
-    public List<Book> getPersonBooks(int personId) {
-        return jdbcTemplate.query("select * from book where person_id = ?", bookMapper, personId);
-    }
-
-    public Optional<Person> getBookOwner(Integer id) {
-        return jdbcTemplate.queryForStream("select person.* from person inner join book on person.person_id = book.person_id where book_id=?", peopleMapper, id).findAny();
-    }
-
+    @Transactional()
     public void assign(Integer bookId, Integer personId) {
-        jdbcTemplate.update("update book set person_id = ? where book_id = ?", personId, bookId);
+        Session session = sessionFactory.getCurrentSession();
+        Book book = session.get(Book.class, bookId);
+        Person person = session.getReference(Person.class, personId);
+        book.setPerson(person);
     }
 
+    @Transactional()
     public void release(Integer bookId) {
-        jdbcTemplate.update("update book set person_id = default where book_id = ?", bookId);
+        Session session = sessionFactory.getCurrentSession();
+        Book book = session.get(Book.class, bookId);
+        book.setPerson(null);
     }
 }
