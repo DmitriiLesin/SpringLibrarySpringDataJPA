@@ -1,4 +1,4 @@
-package com.lesindmitrii.springlibrary.entity;
+package com.lesindmitrii.springlibrary.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
@@ -6,8 +6,13 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.time.Duration;
+import java.time.ZonedDateTime;
+
 @Entity()
 public class Book {
+
+    public static final int DAYS_BEFORE_EXPIRE = 10;
     @Id
     @Column(name = "book_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +38,8 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY)
     private Person person;
 
+    @Column(name = "assign_date")
+    private ZonedDateTime assignDate;
 
     public Integer getId() {
         return id;
@@ -72,5 +79,23 @@ public class Book {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public ZonedDateTime getAssignDate() {
+        return assignDate;
+    }
+
+    public void setAssignDate(ZonedDateTime assignDate) {
+        this.assignDate = assignDate;
+    }
+
+    public boolean isExpired() {
+
+        if (assignDate == null) {
+            return false;
+        }
+
+        return Duration.between(assignDate, ZonedDateTime.now()).toDays() > DAYS_BEFORE_EXPIRE;
+
     }
 }

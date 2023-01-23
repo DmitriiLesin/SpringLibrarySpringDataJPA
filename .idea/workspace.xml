@@ -2,25 +2,33 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="SpringLibrary:war exploded" />
+      <artifact name="SpringLibrarySpringDataJPA:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="083969de-fcd1-436b-96f3-6114a4a40c90" name="Changes" comment="Migrate SpringLibrary project to hibernate">
+    <list default="true" id="083969de-fcd1-436b-96f3-6114a4a40c90" name="Changes" comment="Migrate SpringLibrary project to Spring Data JPA">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/repositories/BooksRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/repositories/PeopleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/services/BooksService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/services/PeopleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/create_tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/config/SpringConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/config/SpringConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/config/ServletInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/system/ServletInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/config/SpringConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/system/SpringConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/PeopleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/PeopleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/BooksDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/BooksDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/PeopleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/PeopleDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/entity/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/entity/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/mappers/BookMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/mappers/PeopleMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/BooksDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/PeopleDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/model/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/entity/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/model/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/util/PersonValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/util/PersonValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/view.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,8 +39,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
+        <option value="Interface" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -47,8 +56,8 @@
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
+    <option name="FILTER_INFO" value="false" />
+    <option name="FILTER_DEBUG" value="false" />
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -62,28 +71,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/mrkon/IdeaProjects/SpringLibrary/src/main/webapp/WEB-INF/views/books",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "spring.configuration.checksum": "7b2d67f0bc4d015da491d16b50c4ba62"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mrkon/IdeaProjects/SpringLibrary/src/main/webapp/WEB-INF/views/books&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;91552c9471e78c0ec34024a1dd694b56&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mrkon\IdeaProjects\SpringLibrary\src\main\webapp\WEB-INF\views\books" />
@@ -93,10 +102,22 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 10.0.27" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.27" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER" value="false" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="SpringLibrary:war exploded">
+        <artifact name="SpringLibrarySpringDataJPA:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="" />
           </settings>
@@ -176,7 +197,7 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="SpringLibrary:war exploded" />
+          <artifact name="SpringLibrarySpringDataJPA:war exploded" />
         </option>
       </method>
     </configuration>
@@ -198,6 +219,9 @@
       <workItem from="1673534332434" duration="11423000" />
       <workItem from="1673602273005" duration="5302000" />
       <workItem from="1674222936492" duration="8560000" />
+      <workItem from="1674457405477" duration="723000" />
+      <workItem from="1674458146345" duration="3942000" />
+      <workItem from="1674468372109" duration="15031000" />
     </task>
     <task id="LOCAL-00001" summary="Add people support">
       <created>1673362068447</created>
@@ -243,32 +267,15 @@
     <MESSAGE value="Add people support" />
     <MESSAGE value="Add books support, refactoring" />
     <MESSAGE value="Migrate SpringLibrary project to hibernate" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrate SpringLibrary project to hibernate" />
+    <MESSAGE value="Migrate SpringLibrary project to Spring Data JPA" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrate SpringLibrary project to Spring Data JPA" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/BookController.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/dao/PeopleDao.java</url>
-          <line>59</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/PeopleController.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/lesindmitrii/springlibrary/controller/PeopleController.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
+        <watch expression="Duration.between(assignDate, ZonedDateTime.now())" language="JAVA" />
+        <watch expression="Duration.between(assignDate, ZonedDateTime.now()).toDays()" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

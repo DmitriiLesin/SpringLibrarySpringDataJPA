@@ -1,7 +1,7 @@
 package com.lesindmitrii.springlibrary.controller;
 
-import com.lesindmitrii.springlibrary.dao.PeopleDao;
-import com.lesindmitrii.springlibrary.entity.Person;
+import com.lesindmitrii.springlibrary.model.Person;
+import com.lesindmitrii.springlibrary.services.PeopleService;
 import com.lesindmitrii.springlibrary.util.PersonValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,23 +10,33 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
 
-    private final PeopleDao peopleDao;
+    private final PeopleService peopleService;
 
     private final PersonValidator personValidator;
 
     @Autowired
-    public PeopleController(PeopleDao peopleDao, PersonValidator personValidator) {
-        this.peopleDao = peopleDao;
+    public PeopleController(PeopleService peopleService, PersonValidator personValidator) {
+        this.peopleService = peopleService;
         this.personValidator = personValidator;
     }
 
     @GetMapping
-    public String list(Model model) {
-        model.addAttribute("people", peopleDao.getAll());
+    public String list(Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "person_per_page", required = false) Integer personPerPage, @RequestParam(value = "sort_by_year", required = false) boolean sortByYear) {
+        List<Person> people;
+        if (page == null || personPerPage == null) {
+            people = peopleService.getAll(sortByYear);
+        } else {
+            people = peopleService.getAll(page, personPerPage, sortByYear);
+        }
+
+        model.addAttribute("people", people);
         return "people/list";
     }
 
@@ -41,19 +51,19 @@ public class PeopleController {
         if (bindingResult.hasErrors()) {
             return "people/new";
         }
-        peopleDao.create(person);
+        peopleService.create(person);
         return "redirect:/people/" + person.getId();
     }
 
     @GetMapping("/{id}")
     public String viewPerson(Model model, @PathVariable Integer id) {
-        model.addAttribute("person", peopleDao.getByIdWithBooks(id));
+        model.addAttribute("person", peopleService.getByIdWithBooks(id));
         return "people/view";
     }
 
     @GetMapping("/{id}/edit")
     public String editPerson(Model model, @PathVariable Integer id) {
-        model.addAttribute("person", peopleDao.getById(id));
+        model.addAttribute("person", peopleService.getById(id));
         return "people/edit";
     }
 
@@ -63,13 +73,13 @@ public class PeopleController {
         if (bindingResult.hasErrors()) {
             return "people/edit";
         }
-        peopleDao.update(id, person);
+        peopleService.update(id, person);
         return "redirect:/people/" + person.getId();
     }
 
     @DeleteMapping("/{id}")
     public String deletePerson(@PathVariable Integer id) {
-        peopleDao.deleteById(id);
+        peopleService.deleteById(id);
         return "redirect:/people";
     }
 

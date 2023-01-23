@@ -14,7 +14,8 @@ create table Book
     title         varchar(256) not null,
     author        varchar(256) not null,
     year_of_issue int          not null check ( year_of_issue >= 1900 ),
-    person_id     int          references springlibrary.public.person (person_id) on delete set null
+    person_id     int          references springlibrary.public.person (person_id) on delete set null,
+    assign_date timestamp
 )
 ;
 create unique index on Person (full_name)

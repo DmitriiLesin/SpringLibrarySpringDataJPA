@@ -1,4 +1,4 @@
-package com.lesindmitrii.springlibrary.config;
+package com.lesindmitrii.springlibrary.system;
 
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.FilterRegistration;

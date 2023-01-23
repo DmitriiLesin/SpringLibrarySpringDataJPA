@@ -1,4 +1,4 @@
-package com.lesindmitrii.springlibrary.entity;
+package com.lesindmitrii.springlibrary.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity()
 @Table()
-@NamedEntityGraph(name = "loadBooks", attributeNodes = {@NamedAttributeNode(value = "books")})
 public class Person {
 
     @Id

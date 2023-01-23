@@ -1,6 +1,5 @@
-package com.lesindmitrii.springlibrary.config;
+package com.lesindmitrii.springlibrary.system;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,9 +9,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -31,6 +32,7 @@ import java.util.Properties;
 @EnableWebMvc
 @PropertySource("classpath:application.properties")
 @EnableTransactionManagement
+@EnableJpaRepositories("com.lesindmitrii.springlibrary.repositories")
 public class SpringConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -95,20 +97,22 @@ public class SpringConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(DataSource dataSource, @Qualifier("HibernateProperties") Properties hibernateProperties) {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource);
-        sessionFactory.setPackagesToScan("com.lesindmitrii.springlibrary");
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, @Qualifier("HibernateProperties") Properties hibernateProperties) {
+        LocalContainerEntityManagerFactoryBean emfb = new LocalContainerEntityManagerFactoryBean();
+        emfb.setDataSource(dataSource);
+        emfb.setPackagesToScan("com.lesindmitrii.springlibrary.model");
 
-        sessionFactory.setHibernateProperties(hibernateProperties);
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        emfb.setJpaVendorAdapter(vendorAdapter);
+        emfb.setJpaProperties(hibernateProperties);
 
-        return sessionFactory;
+        return emfb;
     }
 
     @Bean
-    public PlatformTransactionManager hibernateTransactionManager(SessionFactory localSessionFactoryBean) {
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(localSessionFactoryBean);
+    public PlatformTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean emfb) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(emfb.getObject());
 
         return transactionManager;
     }
